@@ -1,0 +1,27 @@
+<div class="hg-panel">
+  <aside class="hg-panel__sidebar">
+    <div class="hg-panel__marca">Handgelus</div>
+
+    <nav class="hg-panel__nav">
+      <a routerLink="/usuarios" routerLinkActive="hg-panel__nav-item--activo" class="hg-panel__nav-item">
+        Usuarios
+      </a>
+    </nav>
+
+    <button type="button" class="hg-panel__salir" (click)="salir()">
+      Cerrar sesión
+    </button>
+  </aside>
+
+  <div class="hg-panel__contenido">
+    <header class="hg-panel__topbar">
+      <span class="hg-panel__saludo">
+        {{ nombreUsuario() }} · <span class="hg-panel__rol">{{ etiquetaRol() }}</span>
+      </span>
+    </header>
+
+    <main class="hg-panel__main">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

@@ -1,0 +1,200 @@
+/* ==========================================================================
+   HandgelusApp — Sistema de diseño
+   Paleta inspirada en el atelier: tinta, terracota y crema de estudio.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Color */
+  --hg-crema: #F7F3EC;
+  --hg-crema-alta: #FFFFFF;
+  --hg-tinta: #241F1C;
+  --hg-tinta-suave: #4A423C;
+  --hg-terracota: #A6512E;
+  --hg-terracota-oscuro: #7E3C21;
+  --hg-oliva: #6B6247;
+  --hg-arena: #EAE2D3;
+  --hg-arena-borde: #D8CCB4;
+  --hg-alerta: #9B3A2E;
+  --hg-alerta-fondo: #F5E4DF;
+  --hg-exito: #4B6B47;
+  --hg-exito-fondo: #E7EEE3;
+
+  /* Tipografía */
+  --f-display: 'Fraunces', Georgia, serif;
+  --f-cuerpo: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Espaciado */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+
+  /* Bordes: rectos, casi sin radio — ficha de estudio, no card de SaaS */
+  --radio-sm: 2px;
+  --radio-md: 4px;
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--f-cuerpo);
+  background: var(--hg-crema);
+  color: var(--hg-tinta);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--f-display);
+  font-weight: 500;
+  color: var(--hg-tinta);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--hg-terracota-oscuro);
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Foco visible, siempre — accesibilidad no negociable */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--hg-terracota);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---- Componentes de formulario reutilizables ---- */
+
+.hg-campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-5);
+}
+
+.hg-campo label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--hg-tinta-suave);
+}
+
+.hg-campo input,
+.hg-campo select {
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--hg-arena-borde);
+  border-radius: var(--radio-sm);
+  background: var(--hg-crema-alta);
+  color: var(--hg-tinta);
+  transition: border-color 0.15s ease;
+}
+
+.hg-campo input:focus,
+.hg-campo select:focus {
+  border-color: var(--hg-terracota);
+}
+
+.hg-campo .hg-error-campo {
+  font-size: 0.8rem;
+  color: var(--hg-alerta);
+}
+
+.hg-boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radio-sm);
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.hg-boton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.hg-boton--primario {
+  background: var(--hg-terracota);
+  color: var(--hg-crema-alta);
+}
+
+.hg-boton--primario:hover:not(:disabled) {
+  background: var(--hg-terracota-oscuro);
+}
+
+.hg-boton--secundario {
+  background: transparent;
+  border-color: var(--hg-arena-borde);
+  color: var(--hg-tinta);
+}
+
+.hg-boton--secundario:hover:not(:disabled) {
+  border-color: var(--hg-oliva);
+}
+
+.hg-boton--peligro {
+  background: transparent;
+  border-color: var(--hg-alerta);
+  color: var(--hg-alerta);
+}
+
+.hg-boton--peligro:hover:not(:disabled) {
+  background: var(--hg-alerta-fondo);
+}
+
+.hg-alerta-bloque {
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radio-sm);
+  background: var(--hg-alerta-fondo);
+  color: var(--hg-alerta);
+  font-size: 0.875rem;
+  border-left: 3px solid var(--hg-alerta);
+}
+
+.hg-exito-bloque {
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radio-sm);
+  background: var(--hg-exito-fondo);
+  color: var(--hg-exito);
+  font-size: 0.875rem;
+  border-left: 3px solid var(--hg-exito);
+}

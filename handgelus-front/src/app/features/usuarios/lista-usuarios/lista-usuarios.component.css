@@ -1,0 +1,125 @@
+.hg-vista__encabezado {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--sp-6);
+  gap: var(--sp-4);
+}
+
+.hg-vista__encabezado h1 {
+  font-size: 1.9rem;
+}
+
+.hg-vista__subtitulo {
+  color: var(--hg-oliva);
+  font-size: 0.9rem;
+  margin-top: var(--sp-1);
+}
+
+.hg-filtros {
+  display: flex;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-6);
+  flex-wrap: wrap;
+}
+
+.hg-filtro {
+  background: transparent;
+  border: 1px solid var(--hg-arena-borde);
+  color: var(--hg-tinta-suave);
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.hg-filtro:hover {
+  border-color: var(--hg-oliva);
+}
+
+.hg-filtro--activo {
+  background: var(--hg-tinta);
+  border-color: var(--hg-tinta);
+  color: var(--hg-crema);
+}
+
+.hg-vista__cargando {
+  color: var(--hg-oliva);
+  font-size: 0.9rem;
+}
+
+.hg-vacio {
+  border: 1px dashed var(--hg-arena-borde);
+  border-radius: var(--radio-md);
+  padding: var(--sp-7);
+  text-align: center;
+  color: var(--hg-oliva);
+}
+
+.hg-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--hg-crema-alta);
+  border: 1px solid var(--hg-arena-borde);
+}
+
+.hg-tabla thead th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--hg-oliva);
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--hg-arena-borde);
+  background: var(--hg-arena);
+}
+
+.hg-tabla tbody td {
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--hg-arena-borde);
+  font-size: 0.875rem;
+  color: var(--hg-tinta);
+}
+
+.hg-tabla tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.hg-tabla__acciones {
+  display: flex;
+  gap: var(--sp-3);
+  justify-content: flex-end;
+}
+
+.hg-enlace-accion {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--hg-terracota-oscuro);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.hg-enlace-accion:hover {
+  text-decoration: underline;
+}
+
+.hg-enlace-accion--peligro {
+  color: var(--hg-alerta);
+}
+
+.hg-estado {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--hg-exito-fondo);
+  color: var(--hg-exito);
+}
+
+.hg-estado--inactivo {
+  background: var(--hg-alerta-fondo);
+  color: var(--hg-alerta);
+}

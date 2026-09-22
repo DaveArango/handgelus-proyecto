@@ -1,0 +1,94 @@
+<div class="hg-vista">
+  <div class="hg-vista__encabezado">
+    <div>
+      <h1>Usuarios</h1>
+      <p class="hg-vista__subtitulo">Cuentas del equipo y clientes registrados.</p>
+    </div>
+    <button type="button" class="hg-boton hg-boton--primario" (click)="abrirCreacion()">
+      Nuevo usuario
+    </button>
+  </div>
+
+  <div class="hg-filtros">
+    <button
+      type="button"
+      class="hg-filtro"
+      [class.hg-filtro--activo]="filtroRol() === null"
+      (click)="filtrarPor(null)"
+    >
+      Todos
+    </button>
+    @for (rol of roles; track rol) {
+      <button
+        type="button"
+        class="hg-filtro"
+        [class.hg-filtro--activo]="filtroRol() === rol"
+        (click)="filtrarPor(rol)"
+      >
+        {{ etiquetaRol(rol) }}
+      </button>
+    }
+  </div>
+
+  @if (mensajeError()) {
+    <div class="hg-alerta-bloque">{{ mensajeError() }}</div>
+  }
+
+  @if (cargando()) {
+    <p class="hg-vista__cargando">Cargando usuarios…</p>
+  } @else if (usuarios().length === 0) {
+    <div class="hg-vacio">
+      <p>No hay usuarios que coincidan con este filtro.</p>
+    </div>
+  } @else {
+    <table class="hg-tabla">
+      <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Teléfono</th>
+        <th>Rol</th>
+        <th>Estado</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (usuario of usuarios(); track usuario.id) {
+          <tr>
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.correo }}</td>
+            <td>{{ usuario.telefono || '—' }}</td>
+            <td>{{ etiquetaRol(usuario.rol) }}</td>
+            <td>
+              <span class="hg-estado" [class.hg-estado--inactivo]="!usuario.activo">
+                {{ usuario.activo ? 'Activo' : 'Inactivo' }}
+              </span>
+            </td>
+            <td class="hg-tabla__acciones">
+              <button type="button" class="hg-enlace-accion" (click)="abrirEdicion(usuario)">
+                Editar
+              </button>
+              @if (usuario.activo) {
+                <button type="button" class="hg-enlace-accion hg-enlace-accion--peligro" (click)="desactivar(usuario)">
+                  Desactivar
+                </button>
+              } @else {
+                <button type="button" class="hg-enlace-accion" (click)="reactivar(usuario)">
+                  Reactivar
+                </button>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
+
+@if (mostrarFormulario()) {
+  <app-formulario-usuario
+    [usuarioAEditar]="usuarioSeleccionado()"
+    (cerrar)="cerrarFormulario()"
+    (guardado)="alGuardar()"
+  ></app-formulario-usuario>
+}

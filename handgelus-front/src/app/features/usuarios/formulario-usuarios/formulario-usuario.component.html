@@ -1,0 +1,75 @@
+<div class="hg-modal-fondo" (click)="cerrarSiEsFondo($event)">
+  <div class="hg-modal">
+    <div class="hg-modal__encabezado">
+      <h2>{{ esEdicion() ? 'Editar usuario' : 'Nuevo usuario' }}</h2>
+      <button type="button" class="hg-modal__cerrar" (click)="cerrar.emit()" aria-label="Cerrar">×</button>
+    </div>
+
+    <form [formGroup]="formulario" (ngSubmit)="guardar()">
+      @if (mensajeError()) {
+        <div class="hg-alerta-bloque">{{ mensajeError() }}</div>
+      }
+
+      <div class="hg-campo">
+        <label for="nombre">Nombre completo</label>
+        <input id="nombre" type="text" formControlName="nombre" />
+        @if (campoInvalido('nombre')) {
+          <span class="hg-error-campo">El nombre es obligatorio.</span>
+        }
+      </div>
+
+      <div class="hg-campo">
+        <label for="correo">Correo electrónico</label>
+        <input id="correo" type="email" formControlName="correo" />
+        @if (campoInvalido('correo')) {
+          <span class="hg-error-campo">Ingresa un correo válido.</span>
+        }
+      </div>
+
+      <div class="hg-campo">
+        <label for="telefono">Teléfono</label>
+        <input id="telefono" type="tel" formControlName="telefono" />
+      </div>
+
+      <div class="hg-campo">
+        <label for="rol">Rol</label>
+        <select id="rol" formControlName="rol">
+          <option value="CLIENTE">Cliente</option>
+          <option value="ASISTENTE">Asistente</option>
+          <option value="TATUADOR_ARTISTA">Tatuador / Artista</option>
+          <option value="ADMINISTRADOR">Administrador</option>
+        </select>
+      </div>
+
+      @if (!esEdicion()) {
+        <div class="hg-campo">
+          <label for="contrasena">Contraseña</label>
+          <input id="contrasena" type="password" formControlName="contrasena" placeholder="Mínimo 8 caracteres" />
+          @if (campoInvalido('contrasena')) {
+            <span class="hg-error-campo">Debe tener al menos 8 caracteres.</span>
+          }
+        </div>
+      }
+
+      @if (esEdicion()) {
+        <div class="hg-campo">
+          <label for="estado">Estado de la cuenta</label>
+          <select id="estado" formControlName="estado">
+            <option value="ACTIVO">Activo</option>
+            <option value="INACTIVO">Inactivo</option>
+            <option value="BLOQUEADO">Bloqueado</option>
+          </select>
+        </div>
+      }
+
+      <div class="hg-modal__acciones">
+        <button type="button" class="hg-boton hg-boton--secundario" (click)="cerrar.emit()">
+          Cancelar
+        </button>
+        <button type="submit" class="hg-boton hg-boton--primario" [disabled]="guardando()">
+          {{ guardando() ? 'Guardando…' : 'Guardar' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

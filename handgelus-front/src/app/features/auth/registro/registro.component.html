@@ -1,0 +1,69 @@
+<div class="hg-login">
+  <section class="hg-login__marca">
+    <span class="hg-login__wordmark">Handgelus</span>
+    <h1 class="hg-login__titular">
+      Cuéntanos<br />
+      tu idea.<br />
+      Nosotros la<br />
+      hacemos piel.
+    </h1>
+    <p class="hg-login__pie">
+      Crea tu cuenta para solicitar una cotización<br />
+      de tatuaje o una obra por comisión.
+    </p>
+  </section>
+
+  <section class="hg-login__panel">
+    <form class="hg-login__form" [formGroup]="formulario" (ngSubmit)="enviar()">
+      <h2 class="hg-login__form-titulo">Crear cuenta</h2>
+      <p class="hg-login__form-subtitulo">Solo toma un minuto.</p>
+
+      @if (mensajeError()) {
+        <div class="hg-alerta-bloque">{{ mensajeError() }}</div>
+      }
+
+      @if (registroExitoso()) {
+        <div class="hg-exito-bloque">
+          Cuenta creada con éxito. Ya puedes iniciar sesión.
+        </div>
+      }
+
+      <div class="hg-campo">
+        <label for="nombre">Nombre completo</label>
+        <input id="nombre" type="text" formControlName="nombre" placeholder="Ana López" />
+        @if (campoInvalido('nombre')) {
+          <span class="hg-error-campo">El nombre es obligatorio.</span>
+        }
+      </div>
+
+      <div class="hg-campo">
+        <label for="correo">Correo electrónico</label>
+        <input id="correo" type="email" formControlName="correo" placeholder="tu@correo.com" />
+        @if (campoInvalido('correo')) {
+          <span class="hg-error-campo">Ingresa un correo válido.</span>
+        }
+      </div>
+
+      <div class="hg-campo">
+        <label for="telefono">Teléfono (opcional)</label>
+        <input id="telefono" type="tel" formControlName="telefono" placeholder="300 000 0000" />
+      </div>
+
+      <div class="hg-campo">
+        <label for="contrasena">Contraseña</label>
+        <input id="contrasena" type="password" formControlName="contrasena" placeholder="Mínimo 8 caracteres" />
+        @if (campoInvalido('contrasena')) {
+          <span class="hg-error-campo">Debe tener al menos 8 caracteres.</span>
+        }
+      </div>
+
+      <button type="submit" class="hg-boton hg-boton--primario hg-login__boton" [disabled]="cargando()">
+        {{ cargando() ? 'Creando cuenta…' : 'Crear cuenta' }}
+      </button>
+
+      <p class="hg-login__enlace">
+        ¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a>
+      </p>
+    </form>
+  </section>
+</div>
