@@ -24,9 +24,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
 
 	// --- JWT (SWR-02: autenticacion por credenciales unicas) ---
+	// jjwt 0.12.x depende de Jackson 2.x internamente, lo cual es
+	// incompatible con Jackson 3 (el que trae Spring Boot 4). Se usa
+	// jjwt-gson en lugar de jjwt-jackson para evitar el conflicto de
+	// serializacion ("Unable to get public no-arg constructor").
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
-	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+	runtimeOnly 'io.jsonwebtoken:jjwt-gson:0.12.6'
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.oracle.database.jdbc:ojdbc17'

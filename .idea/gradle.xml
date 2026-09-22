@@ -4,12 +4,13 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/handgelus-back" />
-        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="gradleJvm" value="temurin-21" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/handgelus-back" />
           </set>
         </option>
+        <option name="myGradleHome" value="C:\Gradle\gradle-9.7.1" />
       </GradleProjectSettings>
     </option>
   </component>
